@@ -14,15 +14,14 @@ public class BassController {
         String url = body.get("url");
 
         // Ejecuta el script Python
-        ProcessBuilder pb = new ProcessBuilder("python", "src/python/process_bass.py");
+        ProcessBuilder pb = new ProcessBuilder(
+            "python",
+            "src/python/process_bass.py",
+            url
+        );
+        pb.directory(new File(System.getProperty("user.dir")));
         pb.redirectErrorStream(true);
         Process process = pb.start();
-
-        // Envía la URL al script
-        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()))) {
-            writer.write(url + "\n");
-            writer.flush();
-        }
 
         // Captura la salida
         List<String> notas = new ArrayList<>();
