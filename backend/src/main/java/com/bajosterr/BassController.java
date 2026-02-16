@@ -15,7 +15,7 @@ public class BassController {
 
         // Ejecuta el script Python
         ProcessBuilder pb = new ProcessBuilder(
-            "python",
+            "bassenv\\Scripts\\python.exe",
             "src/python/process_bass.py",
             url
         );
